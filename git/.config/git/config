@@ -1,0 +1,17 @@
+[user]
+	email = rizal.arfiyan.23@gmail.com
+	name = Rizal Arfiyan
+	signingkey = 8867F0BB14970408
+[http]
+	postBuffer = 157286400
+[core]
+    excludesfile = ~/.config/git/ignore
+    editor = nano
+[init]
+    defaultBranch = master
+[pull]
+    rebase = true
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
