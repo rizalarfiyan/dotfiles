@@ -196,7 +196,6 @@ format = '[$symbol($version )]($style)'
 symbol = ""
 format = '[ $symbol( $context) ]($style)'
 
-
 [time]
 disabled = true
 time_format = "%R"

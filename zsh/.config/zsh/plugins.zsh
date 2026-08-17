@@ -1,6 +1,4 @@
-# zinit.zsh — Zinit bootstrap
-
-ZINIT_HOME="${ZINIT_HOME:-${XDG_DATA_HOME:-$HOME/.local/share}/zinit}"
+ZINIT_HOME="${ZINIT_HOME:-${XDG_DATA_HOME}/zinit}"
 ZINIT_BIN="${ZINIT_HOME}/zinit.git/zinit.zsh"
 
 if [[ ! -f "$ZINIT_BIN" ]]; then
@@ -16,34 +14,50 @@ if [[ ! -f "$ZINIT_BIN" ]]; then
     print -P "%F{red}[zinit]%f clone failed — check network%f"
     return 1
   fi
+
   print -P "%F{green}[zinit]%f installed%f"
 fi
 
 source "$ZINIT_BIN"
 
-# Load OMZ libs we need (not the whole thing)
+# --- OMZ Core Libraries ---
+zinit snippet OMZL::history.zsh
+zinit snippet OMZL::completion.zsh
+zinit snippet OMZL::clipboard.zsh
 zinit snippet OMZL::git.zsh
+zinit snippet OMZL::key-bindings.zsh
 zinit snippet OMZL::directories.zsh
-zinit snippet OMZL::theme-and-appearance.zsh
 zinit snippet OMZL::async_prompt.zsh
 
-# eza config - must be set BEFORE loading the plugin
+zinit snippet https://github.com/mroth/evalcache/blob/master/evalcache.plugin.zsh
+
+# --- eza OMZ Plugin Config ---
 zstyle ':omz:plugins:eza' 'dirs-first' yes
 zstyle ':omz:plugins:eza' 'git-status' yes
 zstyle ':omz:plugins:eza' 'header' yes
 zstyle ':omz:plugins:eza' 'icons' yes
 
-# zinit snippets (OMZP) — must be before any plugin that uses them
+# --- OMZ Plugins ---
 zinit snippet OMZP::git
-zinit snippet OMZP::sudo
 zinit snippet OMZP::docker
 zinit snippet OMZP::eza
+zinit snippet OMZP::direnv
+zinit snippet OMZP::bun
+zinit snippet OMZP::golang
 zinit snippet OMZP::command-not-found
 
-# zsh plugins (turbo-loaded, no blocking of first prompt)
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-completions
+# Autosuggestions Tuning
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
 
-autoload -Uz compinit
-compinit
+# --- Turbo-Loaded Plugins ---
+zinit wait lucid blockf for \
+    zsh-users/zsh-completions
+
+zinit wait lucid atload"_zsh_autosuggest_start" for \
+    zsh-users/zsh-autosuggestions
+
+zinit wait"1" lucid atinit"zicompinit; zicdreplay" for \
+    zsh-users/zsh-syntax-highlighting \
+    Aloxaf/fzf-tab
