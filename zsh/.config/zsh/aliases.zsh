@@ -35,4 +35,5 @@ alias rm='rm -iv'
 alias b='btop'
 
 # Git Maintenance
+alias dotfiles='cd "$HOME/dotfiles"'
 alias .clean-dotfiles='git -C "$HOME/dotfiles" clean -fdX'

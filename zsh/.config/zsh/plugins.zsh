@@ -39,12 +39,16 @@ zstyle ':omz:plugins:eza' 'icons' yes
 
 # --- OMZ Plugins ---
 zinit snippet OMZP::git
-zinit snippet OMZP::docker
 zinit snippet OMZP::eza
 zinit snippet OMZP::direnv
-zinit snippet OMZP::bun
-zinit snippet OMZP::golang
 zinit snippet OMZP::command-not-found
+
+zinit wait lucid as"completion" for \
+  OMZP::docker/completions/_docker \
+  OMZP::golang \
+  OMZP::bun \
+  OMZP::npm \
+  OMZP::yarn
 
 # Autosuggestions Tuning
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
