@@ -1,0 +1,24 @@
+# atuin/config.toml — shell history database.
+#
+# Atuin stores history in ~/.local/share/atuin/history.db by default
+# (XDG compliant). This config keeps the search UX fast & focused.
+
+[database]
+# Older versions used "db_path"; newer use the data dir automatically.
+# path = "~/.local/share/atuin/history.db"
+
+[search]
+# Show all results; Ctrl-R bound in integrations.zsh
+search_mode = "prefix"
+filter_mode = "global"
+# Don't include the git wrapper aliases (g/git) in what we record
+exclude = ["^git hist", "^g hist"]
+
+[stats]
+# Show a bit more context in the stats command
+common_subcommands = true
+
+[history]
+# Only anonymized usage reporting; never commands
+auto_sync = false
+sync_address = "https://api.atuin.sh"

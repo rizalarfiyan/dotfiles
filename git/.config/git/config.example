@@ -1,0 +1,35 @@
+# config.example — template for ~/.config/git/config (PERSONAL, never commit!)
+#
+# Copy to git/.config/git/config OR to ~/.config/git/config and fill in
+# YOUR identity. This file is gitignored on purpose — publishing it leaks
+# your name/email/signing key.
+#
+#   cp git/.config/git/config.example ~/.config/git/config
+#   $EDITOR ~/.config/git/config
+#
+# Alternatively, set identity in ~/.gitconfig.local (also gitignored),
+# which is auto-included by git/.gitconfig.
+
+[user]
+    name = Your Name
+    email = you@example.com
+    # signingkey = 0000000000000000   # optional GPG/SSH key id
+
+[http]
+    postBuffer = 157286400
+
+[core]
+    excludesfile = ~/.config/git/ignore
+    # editor = nvim                    # override repo default if desired
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = true
+
+[commit]
+    # gpgsign = true                   # enable if you sign commits
+
+[tag]
+    # gpgSign = true

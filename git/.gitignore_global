@@ -1,0 +1,41 @@
+# .gitignore_global — machine-level git exclusions.
+# Referenced from ~/.gitconfig via core.excludesfile.
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+id_rsa
+id_ed25519
+!.env.example
+
+# Build / dependency outputs
+node_modules/
+vendor/
+dist/
+build/
+target/
+*.pyc
+__pycache__/
+
+# Logs
+*.log
+logs/
+
+# Compiled / misc
+*.class
+*.o
+*.a
+*.so

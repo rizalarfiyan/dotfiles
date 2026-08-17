@@ -1,0 +1,100 @@
+# .gitconfig — global git configuration.
+#
+# DO NOT put your name/email here — use ~/.gitconfig.local (gitignored):
+#
+#   [user]
+#       name = Your Name
+#       email = you@example.com
+#
+#   [credential]
+#       helper = cache --timeout=3600
+#
+# The include below merges it automatically.
+
+[include]
+    path = ~/.gitconfig.local
+
+[core]
+    # editor: left unset → git falls back to $EDITOR, then vi
+    pager = "less -FRX"                           # minimal, always available
+    autocrlf = input
+    filemode = true
+    fsmonitor = true
+    preloadindex = true
+    untrackedCache = true
+    excludesfile = ~/.gitignore_global
+
+[init]
+    defaultBranch = main
+
+[push]
+    default = simple
+    autoSetupRemote = true
+    followTags = true
+
+[pull]
+    rebase = true
+    ff = only
+
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+
+[merge]
+    conflictstyle = zdiff3
+    renormalize = true
+
+[diff]
+    colorMoved = zebra
+    mnemonicPrefix = true
+    algorithm = histogram
+
+[difftool]
+    prompt = false
+
+[color]
+    ui = auto
+    status = auto
+    diff = auto
+
+[color "branch"]
+    current = yellow bold
+    local = green
+    remote = red
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = cyan
+
+[status]
+    short = true
+    showUntrackedFiles = all
+
+[log]
+    date = format:%Y-%m-%d %H:%M
+    decorate = auto
+    abbrevCommit = true
+
+[gpg]
+    format = ssh
+
+[tag]
+    sort = version:refname
+
+[rerere]
+    enabled = true
+    autoUpdate = true
+
+[help]
+    autocorrect = prompt
+
+[safe]
+    directory = ~/.config/nvim/repos

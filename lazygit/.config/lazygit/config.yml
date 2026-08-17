@@ -1,0 +1,43 @@
+gui:
+  showCommandLog: false
+  showFileTree: true
+  showListFooter: false
+  showRandomTip: false
+  showBottomLine: true
+  showIcons: true
+  border: "single"
+  theme:
+    activeBorderColor:
+      - green
+      - bold
+    inactiveBorderColor:
+      - white
+    optionsTextColor:
+      - blue
+  mouseEvents: true
+  skipDiscardChangeWarning: false
+  showFileIcons: true
+  commitLength:
+    show: true
+  language: "auto"
+git:
+  diffRenderers:
+    - colorArg: always
+      useConfig: false
+      type: rawGit
+  log:
+    showWholeGraph: true
+    showIcons: true
+  merging:
+    args: "--no-edit"
+  branch:
+    showCommitHash: true
+  pull:
+    mode: "rebase"
+  push:
+    forceLease: true
+os:
+  editPreset: "nano"
+  openCommand: 'xdg-open {{filename}} >/dev/null 2>&1 &'
+notARepo: "skip"
+reporting: "off"
